@@ -1,0 +1,5 @@
+com\hand\ssm\dto\Film.class
+com\hand\ssm\mapper\FilmMapper.class
+com\hand\ssm\service\impl\FilmServiceImpl.class
+com\hand\ssm\service\FilmService.class
+com\hand\ssm\controller\FilmController.class

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<!--让应用程序启动时,加载application.xml,IOC容器 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/application.xml</param-value>
+	</context-param>
+	
+
+	<!--容器的监听 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!--Spring-MVC的配置 -->
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:/spring-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+	<!--Spring MVC核心servlet的映射路径配置 -->
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 解决乱码 -->
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- 身份认证过滤器 没有登录不能访问JSP ,剔除不能拦截的JSP 如login 验证码 path.jsp -->
+	<!-- <filter> <filter-name>JSPFilter</filter-name> <filter-class>com.SSMtest.filter.JSPFilter</filter-class> 
+		可以访问的路径，不拦截 <init-param> <param-name>exclude</param-name> <param-value>/SSMtest/login</param-value> 
+		</init-param> </filter> 不可以访问的路径，拦截 <filter-mapping> <filter-name>JSPFilter</filter-name> 
+		<url-pattern>/SSMtest/*</url-pattern> </filter-mapping> <welcome-file-list> 
+		<welcome-file>login.jsp</welcome-file> </welcome-file-list> -->
+</web-app>

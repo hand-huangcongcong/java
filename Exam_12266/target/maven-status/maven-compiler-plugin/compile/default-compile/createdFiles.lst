@@ -1,0 +1,9 @@
+bean\Customer.class
+bean\Film.class
+controller\AllController.class
+dao\StaffDao.class
+bean\Staff.class
+service\lmpl\ManageContentServiceImpl.class
+bean\Address.class
+dao\CustomerDao.class
+service\ManageContentService.class
